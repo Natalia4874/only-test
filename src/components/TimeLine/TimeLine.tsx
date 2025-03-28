@@ -91,53 +91,57 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
         </TimelineCircle>
       </TimelineContainer>
       <Navigation>
-        <NavigationText>
-          0{activeIndex + 1}/0{items.length}
-        </NavigationText>
-        <NavigationButtons>
-          <NavButtonPrev onClick={handlePrev}>
-            <svg
-              width="10"
-              height="14"
-              viewBox="0 0 10 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.49988 0.750001L2.24988 7L8.49988 13.25"
-                stroke="#42567A"
-                strokeWidth="2"
-              />
-            </svg>
-          </NavButtonPrev>
-          <NavButtonNext onClick={handleNext}>
-            <svg
-              width="10"
-              height="14"
-              viewBox="0 0 10 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1.50012 0.750001L7.75012 7L1.50012 13.25"
-                stroke="#42567A"
-                strokeWidth="2"
-              />
-            </svg>
-          </NavButtonNext>
-        </NavigationButtons>
+        <NavigationWrapper>
+          <NavigationBlock>
+            <NavigationText>
+              0{activeIndex + 1}/0{items.length}
+            </NavigationText>
+            <NavigationButtons>
+              <NavButtonPrev onClick={handlePrev}>
+                <svg
+                  width="10"
+                  height="14"
+                  viewBox="0 0 10 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.49988 0.750001L2.24988 7L8.49988 13.25"
+                    stroke="#42567A"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </NavButtonPrev>
+              <NavButtonNext onClick={handleNext}>
+                <svg
+                  width="10"
+                  height="14"
+                  viewBox="0 0 10 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.50012 0.750001L7.75012 7L1.50012 13.25"
+                    stroke="#42567A"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </NavButtonNext>
+            </NavigationButtons>
+          </NavigationBlock>
+          <NavigationSlider>
+            <Swiper
+              categories={items}
+              initialIndex={activeIndex}
+              slidesPerView={3}
+              spaceBetween="80"
+              pagination={false}
+              loop={false}
+              breakpoints={swiperBreakpoints}
+            />
+          </NavigationSlider>
+        </NavigationWrapper>
       </Navigation>
-      <SwiperContainer>
-        <Swiper
-          categories={items}
-          initialIndex={activeIndex}
-          slidesPerView={3}
-          spaceBetween="80"
-          pagination={false}
-          loop={false}
-          breakpoints={swiperBreakpoints}
-        />
-      </SwiperContainer>
     </Container>
   )
 }
@@ -147,12 +151,10 @@ export { Timeline }
 const Container = styled.div`
   position: relative;
 `
-
-const SwiperContainer = styled.div`
+const NavigationSlider = styled.div`
   margin: 0 auto;
-  padding: 56px 160px 100px 80px;
+  padding: 56px 0 80px;
 `
-
 const TimelineHeader = styled.div`
   position: absolute;
   top: 50%;
@@ -174,11 +176,19 @@ const YearEnd = styled.div`
   line-height: 160px;
   color: var(--color-text-tertiary);
 `
-
 const Navigation = styled.div`
   position: absolute;
-  left: 80px;
-  bottom: 20px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`
+const NavigationWrapper = styled.div`
+  padding: 0 80px;
+`
+const NavigationBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -192,15 +202,15 @@ const NavigationText = styled.span`
 const NavigationButtons = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 14px;
+  gap: 20px;
 `
 const NavButtonPrev = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   background: var(--color-surface-primary);
   border-radius: 100%;
   border: none;
-  box-shadow: var(--elevation-8);
+  border: 1px solid var(--color-border-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -208,23 +218,22 @@ const NavButtonPrev = styled.div`
   transition: all 0.3s ease;
 `
 const NavButtonNext = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   background: var(--color-surface-primary);
   border-radius: 100%;
   border: none;
-  box-shadow: var(--elevation-8);
+  border: 1px solid var(--color-border-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
 `
-
 const TimelineContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 1080px;
   margin: 0 auto;
 
   &:before {
@@ -251,7 +260,6 @@ const TimelineContainer = styled.div`
     z-index: -2;
   }
 `
-
 const TimelineCenter = styled.div`
   position: absolute;
   top: 50%;
@@ -263,14 +271,12 @@ const TimelineCenter = styled.div`
   transform: translate(-50%, -50%);
   z-index: -2;
 `
-
 const TimelineCircle = styled.div<{ rotation: number }>`
   position: relative;
   width: 100%;
   height: 100%;
   transition: transform 0.8s ease-in-out;
 `
-
 const TimelineItemWrapper = styled.div<{ x: number; y: number; size: number; isActive: boolean }>`
   position: absolute;
   top: 50%;
@@ -298,13 +304,11 @@ const TimelineItemWrapper = styled.div<{ x: number; y: number; size: number; isA
     background: var(--color-surface-primary);
   }
 `
-
 const ItemContent = styled.div`
   position: relative;
   text-align: center;
   color: var(--color-text-primary);
 `
-
 const ItemTitle = styled.div`
   position: absolute;
   top: 0;
@@ -316,7 +320,6 @@ const ItemTitle = styled.div`
   background: var(--color-surface-primary);
   padding: 0 4px;
 `
-
 const ItemNumber = styled.div`
   font-weight: 400;
   font-size: 20px;

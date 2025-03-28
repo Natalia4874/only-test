@@ -93,13 +93,13 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         aria-label="Previous slide"
       >
         <svg
-          width="10"
-          height="14"
-          viewBox="0 0 10 14"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M8.49988 0.750001L2.24988 7L8.49988 13.25" stroke="#42567A" strokeWidth="2" />
+          <path d="M7 1L2 6L7 11" stroke="#3877EE" stroke-width="2" />
         </svg>
       </NavButtonPrev>
       <NavButtonNext
@@ -110,13 +110,13 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         aria-label="Next slide"
       >
         <svg
-          width="10"
-          height="14"
-          viewBox="0 0 10 14"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M1.50012 0.750001L7.75012 7L1.50012 13.25" stroke="#42567A" strokeWidth="2" />
+          <path d="M1 1L6 6L1 11" stroke="#3877EE" stroke-width="2" />
         </svg>
       </NavButtonNext>
 
@@ -163,7 +163,6 @@ export { Swiper }
 const SwiperContainer = styled.div`
   position: relative;
   max-width: 1200px;
-  margin: 0 auto;
 `
 
 const NavButton = styled.button<NavButtonProps>`
@@ -191,7 +190,7 @@ const NavButton = styled.button<NavButtonProps>`
   }
 
   svg path {
-    stroke: ${({ disabled }) => (disabled ? '#999' : '#42567A')};
+    stroke: ${({ disabled }) => (disabled ? '#999' : '#3877EE')};
   }
 `
 
