@@ -1,3 +1,5 @@
+import React from 'react'
+
 import styled from 'styled-components'
 
 import { Timeline } from '../../components/TimeLine/TimeLine'
@@ -7,13 +9,13 @@ const TimelineWithData: React.FC<iTimelineWithDataProps> = (props) => {
   const { data } = props
 
   return (
-    <>
+    <React.Fragment>
       <Header>
         <GradientLine />
         <Heading>Исторические даты</Heading>
       </Header>
       <Timeline items={data} />
-    </>
+    </React.Fragment>
   )
 }
 

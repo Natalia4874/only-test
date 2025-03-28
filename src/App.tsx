@@ -16,7 +16,7 @@ const App: React.FC = () => {
     setCategories(data)
   }, [])
 
-  if (!categories.length) return <div>Данные не найдены</div>
+  if (!categories.length) return <div>Загружаем данные</div>
 
   return (
     <Container>

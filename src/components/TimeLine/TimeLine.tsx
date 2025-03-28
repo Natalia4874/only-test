@@ -71,43 +71,44 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
 
   return (
     <Container>
-      <TimelineContainer ref={containerRef}>
-        <TimelineCenter />
-        <TimelineCircle rotation={rotation}>
-          {items.map((item, index) => {
-            const position = calculatePosition(index, items.length)
-            const isActive = index === activeIndex
-            return (
-              <>
-                {isActive && (
-                  <TimelineHeader>
-                    <YearStart>{item.yearStart}</YearStart>
-                    <YearEnd>{item.yearEnd}</YearEnd>
-                  </TimelineHeader>
-                )}
-                <TimelineItemWrapper
-                  key={item.id}
-                  x={position.x}
-                  y={position.y}
-                  size={itemSize}
-                  isActive={isActive}
-                  onClick={() => rotateToItem(index)}
-                >
-                  <ItemContent>
-                    <ItemNumber>{item.id}</ItemNumber>
-                    {isActive && <ItemTitle>{item.title}</ItemTitle>}
-                  </ItemContent>
-                </TimelineItemWrapper>
-              </>
-            )
-          })}
-        </TimelineCircle>
-      </TimelineContainer>
+      {items.length >= 2 && items.length <= 6 && (
+        <TimelineContainer ref={containerRef}>
+          <TimelineCenter />
+          <TimelineCircle rotation={rotation}>
+            {items.map((item, index) => {
+              const position = calculatePosition(index, items.length)
+              const isActive = index === activeIndex
+              return (
+                <React.Fragment key={item.id}>
+                  {isActive && (
+                    <TimelineHeader>
+                      <YearStart>{item.yearStart}</YearStart>
+                      <YearEnd>{item.yearEnd}</YearEnd>
+                    </TimelineHeader>
+                  )}
+                  <TimelineItemWrapper
+                    x={position.x}
+                    y={position.y}
+                    size={itemSize}
+                    isActive={isActive}
+                    onClick={() => rotateToItem(index)}
+                  >
+                    <ItemContent>
+                      <ItemNumber>{item.id}</ItemNumber>
+                      {isActive && <ItemTitle>{item.title}</ItemTitle>}
+                    </ItemContent>
+                  </TimelineItemWrapper>
+                </React.Fragment>
+              )
+            })}
+          </TimelineCircle>
+        </TimelineContainer>
+      )}
       <Navigation>
         <NavigationWrapper>
           <NavigationBlock>
             <NavigationText>
-              0{activeIndex + 1}/0{items.length}
+              {`${activeIndex + 1}`.padStart(2, '0')}/{`${items.length}`.padStart(2, '0')}
             </NavigationText>
             <NavigationButtons>
               <NavButton disabled={prevBtnDisabled} onClick={handlePrev}>
@@ -163,74 +164,7 @@ export { Timeline }
 
 const Container = styled.div`
   position: relative;
-`
-const NavigationSlider = styled.div`
-  margin: 0 auto;
-  padding: 56px 0 20px;
-`
-const TimelineHeader = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  display: flex;
-  gap: 80px;
-`
-const YearStart = styled.div`
-  font-size: 200px;
-  font-weight: 700;
-  line-height: 160px;
-  color: var(--color-text-accent);
-`
-const YearEnd = styled.div`
-  font-size: 200px;
-  font-weight: 700;
-  line-height: 160px;
-  color: var(--color-text-tertiary);
-`
-const Navigation = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`
-const NavigationWrapper = styled.div`
-  padding: 0 80px;
-`
-const NavigationBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`
-const NavigationText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 100%;
-  color: var(--color-text-primary);
-`
-const NavigationButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`
-const NavButton = styled.button<iNavButtonProps>`
-  width: 50px;
-  height: 50px;
-  background: var(--color-surface-primary);
-  border-radius: 100%;
-  border: none;
-  border: 1px solid var(--color-border-secondary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
+  min-height: 600px;
 `
 const TimelineContainer = styled.div`
   position: relative;
@@ -326,4 +260,72 @@ const ItemNumber = styled.div`
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
+`
+const NavigationSlider = styled.div`
+  margin: 0 auto;
+  padding: 56px 0 20px;
+`
+const TimelineHeader = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  display: flex;
+  gap: 80px;
+`
+const YearStart = styled.div`
+  font-size: 200px;
+  font-weight: 700;
+  line-height: 160px;
+  color: var(--color-text-accent);
+`
+const YearEnd = styled.div`
+  font-size: 200px;
+  font-weight: 700;
+  line-height: 160px;
+  color: var(--color-text-tertiary);
+`
+const Navigation = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`
+const NavigationWrapper = styled.div`
+  padding: 0 80px;
+`
+const NavigationBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`
+const NavigationText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+  color: var(--color-text-primary);
+`
+const NavigationButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`
+const NavButton = styled.button<iNavButtonProps>`
+  width: 50px;
+  height: 50px;
+  background: var(--color-surface-primary);
+  border-radius: 100%;
+  border: none;
+  border: 1px solid var(--color-border-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
 `
