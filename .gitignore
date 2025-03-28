@@ -1,0 +1,92 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+/blob-report/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+
+# next.js
+/.next/
+/out/
+/public/dev/
+/public/locale/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+swagger-schema.json
+
+# hugo
+/docs/node_modules
+/docs/resources
+.hugo_build.lock
+
+# .husky
+.husky
+
+# .map files
+*.js.map
+*.css.map
+
+# logs
+*.log
+
+# VS Code
+.vscode/*
+*.code-workspace
+
+# Sublime
+*.sublime*
+
+# ide
+.idea
+
+#
+/tmp/
+*.diff
+
+# +----------------------------+
+# |    Keep .gitkeep files     |
+# +----------------------------+-------------------------------+
+# | To keep an empty directory, add a .gitkeep file to it      |
+# | and ignore the directory with a wildcard:                  |
+# |                                                            |
+# |     path/to/dir/*                                         |
+# |                                                            |
+# | this will ignore the content but not the director itself.  |
+# +------------------------------------------------------------+
+!**/.gitkeep

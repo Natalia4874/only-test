@@ -1,0 +1,49 @@
+@import './fonts/index.css';
+
+@import './styles/colors.css';
+@import './styles/elevation.css';
+
+:root {
+  --swiper-theme-color: #42567A;
+  --swiper-navigation-color: #42567A;
+  --swiper-pagination-color: #42567A;
+
+  --swiper-navigation-size: 40px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.swiper-container {
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* @media (max-width: 768px) {
+  .navigation-external {
+    left: -20px;
+    right: -20px;
+  }
+} */

@@ -1,0 +1,37 @@
+:root {
+  --font-primary: 'Bedas Neue', sans-serif;
+  --font-email: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+@font-face {
+  font-family: 'Bedas Neue';
+  src: url('/public/fonts/BedasNeue/BebasNeue-Bold.ttf');
+  font-weight: 700;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: 'Bedas Neue';
+  src: url('/public/fonts/BedasNeue/BebasNeue-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: 'Bedas Neue';
+  src: url('/public/fonts/BedasNeue/BebasNeue-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: 'Bedas Neue';
+  src: url('/public/fonts/BedasNeue/BebasNeue-Thin.ttf');
+  font-weight: 100;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
