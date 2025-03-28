@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { SwiperClass, Swiper as SwiperJS, SwiperSlide, type SwiperRef } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import styled from 'styled-components';
-import { iEventCategory } from '../EventList/EventList.interface';
-import data from '../../assets/data/data.json';
-import { EventList } from '../EventList/EventList';
-import { iSwiperProps } from './Swiper.interface';
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+
+import { Navigation, Pagination } from 'swiper/modules'
+import { SwiperClass, Swiper as SwiperJS, SwiperSlide, type SwiperRef } from 'swiper/react'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+
+import styled from 'styled-components'
+
+import { EventList } from '../EventList/EventList'
+import { iSwiperProps } from './Swiper.interface'
 
 interface NavButtonProps {
-  disabled?: boolean;
+  disabled?: boolean
 }
 
 const Swiper: React.FC<iSwiperProps> = (props) => {
@@ -25,7 +27,7 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
     loop,
     pagination,
     slidesPerView,
-    spaceBetween,
+    spaceBetween
   } = props
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
@@ -37,34 +39,46 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
 
   const isLoop = loop ?? true
 
-  const updateNavigationState = useCallback((swiper: SwiperClass) => {
-    if (!isLoop) {
-      setPrevBtnDisabled(swiper.isBeginning);
-      setNextBtnDisabled(swiper.isEnd);
-    }
-  }, [isLoop]);
+  const updateNavigationState = useCallback(
+    (swiper: SwiperClass) => {
+      if (!isLoop) {
+        setPrevBtnDisabled(swiper.isBeginning)
+        setNextBtnDisabled(swiper.isEnd)
+      }
+    },
+    [isLoop]
+  )
 
-  const onInitSwiper = useCallback((swiper: SwiperClass) => {
-    updateNavigationState(swiper);
-  }, [updateNavigationState]);
+  const onInitSwiper = useCallback(
+    (swiper: SwiperClass) => {
+      updateNavigationState(swiper)
+    },
+    [updateNavigationState]
+  )
 
-  const onSlideChange = useCallback((swiper: SwiperClass) => {
-    updateNavigationState(swiper);
-    if (isChangeOnClickSlide && swiper.clickedIndex !== undefined) {
-      swiper.slideTo(swiper.clickedIndex);
-    }
-  }, [isChangeOnClickSlide, updateNavigationState]);
+  const onSlideChange = useCallback(
+    (swiper: SwiperClass) => {
+      updateNavigationState(swiper)
+      if (isChangeOnClickSlide && swiper.clickedIndex !== undefined) {
+        swiper.slideTo(swiper.clickedIndex)
+      }
+    },
+    [isChangeOnClickSlide, updateNavigationState]
+  )
 
-  const onTransitionStart = useCallback((swiper: SwiperClass) => {
-    updateNavigationState(swiper);
-  }, [updateNavigationState]);
+  const onTransitionStart = useCallback(
+    (swiper: SwiperClass) => {
+      updateNavigationState(swiper)
+    },
+    [updateNavigationState]
+  )
 
   useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
+    const swiperInstance = swiperRef.current?.swiper
     if (swiperInstance && activeSlideIndex !== undefined) {
-      swiperInstance.slideTo(activeSlideIndex);
+      swiperInstance.slideTo(activeSlideIndex)
     }
-  }, [activeSlideIndex]);
+  }, [activeSlideIndex])
 
   // useEffect(() => {
 
@@ -80,8 +94,14 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         onClick={() => swiperRef.current?.swiper.slidePrev()}
         aria-label="Previous slide"
       >
-        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.49988 0.750001L2.24988 7L8.49988 13.25" stroke="#42567A" strokeWidth="2"/>
+        <svg
+          width="10"
+          height="14"
+          viewBox="0 0 10 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M8.49988 0.750001L2.24988 7L8.49988 13.25" stroke="#42567A" strokeWidth="2" />
         </svg>
       </NavButtonPrev>
       <NavButtonNext
@@ -91,8 +111,14 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         onClick={() => swiperRef.current?.swiper.slideNext()}
         aria-label="Next slide"
       >
-        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.50012 0.750001L7.75012 7L1.50012 13.25" stroke="#42567A" strokeWidth="2"/>
+        <svg
+          width="10"
+          height="14"
+          viewBox="0 0 10 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M1.50012 0.750001L7.75012 7L1.50012 13.25" stroke="#42567A" strokeWidth="2" />
         </svg>
       </NavButtonNext>
 
@@ -111,23 +137,20 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         // @ts-expect-error
         onTransitionStart={onTransitionStart}
       >
-        {categories.map(category => (
+        {categories.map((category) => (
           <div key={`category-${category.id}`} className="category-slide">
             <h2>{category.title}</h2>
-            {category.events.map(event => (
+            {category.events.map((event) => (
               <SwiperSlide key={`event-${category.id}-${event.id}`}>
-                <EventList
-                  year={event.year}
-                  text={event.text}
-                />
+                <EventList year={event.year} text={event.text} />
               </SwiperSlide>
             ))}
           </div>
         ))}
       </SwiperJS>
     </SwiperContainer>
-  );
-};
+  )
+}
 
 const useSwiperRef = <T extends HTMLElement>(): [T | null, React.Ref<T>] => {
   const [wrapper, setWrapper] = useState<T | null>(null)
@@ -142,13 +165,13 @@ const useSwiperRef = <T extends HTMLElement>(): [T | null, React.Ref<T>] => {
   return [wrapper, ref]
 }
 
-export { Swiper };
+export { Swiper }
 
 const SwiperContainer = styled.div`
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-`;
+`
 
 const NavButton = styled.button<NavButtonProps>`
   position: absolute;
@@ -166,8 +189,8 @@ const NavButton = styled.button<NavButtonProps>`
   justify-content: center;
   z-index: 10;
   transition: all 0.3s ease;
-  opacity: ${({ disabled }) => disabled ? 0.5 : 1};
-  pointer-events: ${({ disabled }) => disabled ? 'none' : 'all'};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
 
   &:hover:not(:disabled) {
     opacity: 0.8;
@@ -175,14 +198,14 @@ const NavButton = styled.button<NavButtonProps>`
   }
 
   svg path {
-    stroke: ${({ disabled }) => disabled ? '#999' : '#42567A'};
+    stroke: ${({ disabled }) => (disabled ? '#999' : '#42567A')};
   }
-`;
+`
 
 const NavButtonPrev = styled(NavButton)`
   left: -60px;
-`;
+`
 
 const NavButtonNext = styled(NavButton)`
   right: -60px;
-`;
+`

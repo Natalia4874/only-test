@@ -4,9 +4,9 @@
 @import './styles/elevation.css';
 
 :root {
-  --swiper-theme-color: #42567A;
-  --swiper-navigation-color: #42567A;
-  --swiper-pagination-color: #42567A;
+  --swiper-theme-color: #42567a;
+  --swiper-navigation-color: #42567a;
+  --swiper-pagination-color: #42567a;
 
   --swiper-navigation-size: 40px;
 }

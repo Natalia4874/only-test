@@ -1,37 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import data from './assets/data/data.json';
+import React, { useEffect, useState } from 'react'
+
+import styled from 'styled-components'
+
+import data from './assets/data/data.json'
+
 import './index.css'
-import { Timeline } from './components/TimeLine/TimeLine';
-import { iEventCategory } from './components/EventList/EventList.interface';
-import { Swiper } from './components/Swiper/Swiper';
+
+import { iEventCategory } from './components/EventList/EventList.interface'
+import { Swiper } from './components/Swiper/Swiper'
+import { Timeline } from './components/TimeLine/TimeLine'
 
 const App: React.FC = () => {
-  const [categories, setCategories] = useState<iEventCategory[]>([]);
+  const [categories, setCategories] = useState<iEventCategory[]>([])
 
   const swiperBreakpoints = {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: true
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 80,
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: true
     },
-  };
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 20
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 80
+    }
+  }
 
   useEffect(() => {
-    setCategories(data);
-  }, []);
+    setCategories(data)
+  }, [])
 
-  if (!categories.length) return <div>Данные не найдены</div>;
+  if (!categories.length) return <div>Данные не найдены</div>
 
-console.log('===== App =====')
+  console.log('===== App =====')
 
   return (
     <Container>
@@ -44,7 +48,8 @@ console.log('===== App =====')
         </Header>
         <SwiperContainer>
           <Swiper
-            categories={categories} slidesPerView={3}
+            categories={categories}
+            slidesPerView={3}
             spaceBetween="80"
             pagination={false}
             loop={false}
@@ -53,10 +58,10 @@ console.log('===== App =====')
         </SwiperContainer>
       </Main>
     </Container>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 
 const Container = styled.div`
   display: flex;
@@ -96,7 +101,7 @@ const GradientLine = styled.div`
 
 const Heading = styled.div`
   font-size: 56px;
-  color: #42567A;
+  color: #42567a;
   font-weight: 700;
   line-height: 120%;
   max-width: 350px;

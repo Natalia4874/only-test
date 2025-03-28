@@ -1,5 +1,6 @@
-import { SwiperOptions } from "swiper/types";
-import { iEventCategory } from "../EventList/EventList.interface";
+import { SwiperOptions } from 'swiper/types'
+
+import { iEventCategory } from '../EventList/EventList.interface'
 
 export interface iSwiperProps {
   id?: string

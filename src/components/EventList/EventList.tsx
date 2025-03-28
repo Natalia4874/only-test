@@ -1,38 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import {iEventCategory, iEventItem, iEventListProps} from './EventList.interface';
+import React from 'react'
+
+import styled from 'styled-components'
+
+import { iEventListProps } from './EventList.interface'
 
 const EventList: React.FC<iEventListProps> = (props) => {
   const { year, text, type, yearStart, yearEnd, title } = props
 
-  // if (!data || data.length === 0) {
-  //   return <div>No data available</div>;
-  // }
-
   return (
     <Container>
       {type === 'category' ? (
-          <CategoryCard>
-            <CategoryHeader>
-              <CategoryYears>{yearStart} - {yearEnd}</CategoryYears>
-              <CategoryTitle>{title}</CategoryTitle>
-            </CategoryHeader>
-          </CategoryCard>
+        <CategoryCard>
+          <CategoryHeader>
+            <CategoryYears>
+              {yearStart} - {yearEnd}
+            </CategoryYears>
+            <CategoryTitle>{title}</CategoryTitle>
+          </CategoryHeader>
+        </CategoryCard>
       ) : (
-          <EventCard>
-            <EventYear>{year}</EventYear>
-            <EventText>{text}</EventText>
-          </EventCard>
+        <EventCard>
+          <EventYear>{year}</EventYear>
+          <EventText>{text}</EventText>
+        </EventCard>
       )}
     </Container>
-  );
-};
+  )
+}
 
 export { EventList }
 
-const Container = styled.div`
-
-`
+const Container = styled.div``
 const CategoryCard = styled.div``
 const CategoryHeader = styled.div``
 const CategoryYears = styled.div``

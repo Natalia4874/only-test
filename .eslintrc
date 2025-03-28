@@ -1,0 +1,57 @@
+{
+  "extends": [
+    "standard",
+    "plugin:mobx/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "plugins": ["import", "react", "mobx", "prettier", "standard"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "mocha": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "camelcase": "off",
+    "import/no-webpack-loader-syntax": "off",
+    "import/no-anonymous-default-export": ["error", { "allowObject": true }],
+    "mobx/missing-observer": "off",
+    "react/prop-types": "off",
+    "multiline-ternary": "off",
+    "object-shorthand": ["warn", "consistent"],
+    "prettier/prettier": "error",
+    "react/sort-prop-types": [
+      2,
+      {
+        "callbacksLast": true,
+        "ignoreCase": true,
+        "requiredFirst": true
+      }
+    ],
+    "react/jsx-sort-props": [
+      2,
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "shorthandLast": true,
+        "ignoreCase": true,
+        "noSortAlphabetically": false
+      }
+    ]
+  }
+}

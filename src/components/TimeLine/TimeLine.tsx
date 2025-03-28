@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 import styled from 'styled-components'
+
 import { iTimelineProps } from './TimeLine.interface'
 
 const Timeline: React.FC<iTimelineProps> = ({ items }) => {
@@ -16,7 +17,7 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
     const radian = (angle * Math.PI) / 180
     return {
       x: radius * Math.cos(radian),
-      y: radius * Math.sin(radian),
+      y: radius * Math.sin(radian)
     }
   }
 
@@ -117,7 +118,8 @@ const TimelineItemWrapper = styled.div<{ x: number; y: number; size: number; isA
   height: ${(props) => props.size}px;
   margin-left: ${(props) => props.x - props.size / 2}px;
   margin-top: ${(props) => props.y - props.size / 2}px;
-  background: ${(props) => (props.isActive ? 'var(--color-surface-primary)' : 'var(--color-surface-tertiary)')};
+  background: ${(props) =>
+    props.isActive ? 'var(--color-surface-primary)' : 'var(--color-surface-tertiary)'};
   border: ${(props) => (props.isActive ? '1px solid var(--color-border-tertiary)' : '#ddd')};
   border-radius: 50%;
   display: flex;

@@ -1,20 +1,20 @@
 export interface iEventItem {
-  id: number;
-  year: number;
-  text: string;
+  id: number
+  year: number
+  text: string
 }
 
 export interface iEventCategory {
-  id: number;
-  yearStart: number;
-  yearEnd: number;
-  title: string;
-  events: iEventItem[];
+  id: number
+  yearStart: number
+  yearEnd: number
+  title: string
+  events: iEventItem[]
 }
 
 export interface iEventListProps {
-  data?: iEventCategory[] | iEventItem[];
-  type?: 'category' | 'event';
+  data?: iEventCategory[] | iEventItem[]
+  type?: 'category' | 'event'
   year?: number
   text?: string
   yearStart?: number | undefined

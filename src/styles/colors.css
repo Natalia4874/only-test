@@ -1,24 +1,24 @@
 :root {
-  --color-text-primary: #42567A;
-  --color-text-secondary: #9DBEFD;
-  --color-text-tertiary: #F05CA7;
-  --color-text-accent: #3877EE;
-  --color-text-quaternary: #303E58;
+  --color-text-primary: #42567a;
+  --color-text-secondary: #9dbefd;
+  --color-text-tertiary: #f05ca7;
+  --color-text-accent: #3877ee;
+  --color-text-quaternary: #303e58;
 
-  --color-border-primary: #D0D5E0;
-  --color-border-secondary: #9BA5BA;
-  --color-border-tertiary: #42567A;
-  --color-border-quaternary: #E4E6EF;
-  --color-border-disabled: #C6CDD9;
+  --color-border-primary: #d0d5e0;
+  --color-border-secondary: #9ba5ba;
+  --color-border-tertiary: #42567a;
+  --color-border-quaternary: #e4e6ef;
+  --color-border-disabled: #c6cdd9;
 
   --color-surface-primary: #fff;
-  --color-surface-secondary: #F3F4F9;
-  --color-surface-tertiary: #42567A;
+  --color-surface-secondary: #f3f4f9;
+  --color-surface-tertiary: #42567a;
 
-  --color-item-primary: #42567A;
+  --color-item-primary: #42567a;
   /* --color-item-secondary: ;
   --color-item-tertiary: ; */
-  --color-item-disabled: #9bA5B8;
+  --color-item-disabled: #9ba5b8;
 
-  --color-gradient-primary: linear-gradient(to bottom, #3877EE, #EF5DA8);
+  --color-gradient-primary: linear-gradient(to bottom, #3877ee, #ef5da8);
 }

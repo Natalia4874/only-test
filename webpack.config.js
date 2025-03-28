@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const SOURCE_FOLDER = 'src'
@@ -18,7 +18,7 @@ const webpackConfig = {
         exclude: /node_modules/,
         loader: 'ts-loader',
         options: {
-          context: __dirname,
+          context: __dirname
         }
       },
       {
@@ -34,19 +34,19 @@ const webpackConfig = {
                 localIdentName: '[name]__[local]--[hash:base64:5]'
               }
             }
-          },
+          }
         ]
-      },
+      }
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', 'json'],
+    extensions: ['.tsx', '.ts', '.js', 'json']
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
       filename: path.join(__dirname, BUILD_FOLDER, 'index.html'),
-      hash: true,
+      hash: true
     }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map'
@@ -55,7 +55,7 @@ const webpackConfig = {
   devServer: {
     port: 3000,
     open: false,
-    hot: false,
+    hot: false
   },
   devtool: false,
   mode: 'development'

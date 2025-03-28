@@ -6,5 +6,5 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "types": ["styled-components"]
-  },
+  }
 }
