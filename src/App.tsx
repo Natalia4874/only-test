@@ -7,7 +7,6 @@ import data from './assets/data/data.json'
 import './index.css'
 
 import { iEventCategory } from './components/EventList/EventList.interface'
-import { Swiper } from './components/Swiper/Swiper'
 import { Timeline } from './components/TimeLine/TimeLine'
 
 const App: React.FC = () => {
@@ -46,16 +45,6 @@ const App: React.FC = () => {
           <GradientLine />
           <Heading>Исторические даты</Heading>
         </Header>
-        <SwiperContainer>
-          <Swiper
-            categories={categories}
-            slidesPerView={3}
-            spaceBetween="80"
-            pagination={false}
-            loop={false}
-            breakpoints={swiperBreakpoints}
-          />
-        </SwiperContainer>
       </Main>
     </Container>
   )

@@ -19,6 +19,7 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
   const {
     id,
     categories,
+    initialIndex,
     isChangeOnClickSlide,
     isNavigation = false,
     activeSlideIndex = 0,
@@ -29,6 +30,8 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
     slidesPerView,
     spaceBetween
   } = props
+
+  const initialItem = categories[initialIndex]
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(false)
@@ -79,11 +82,6 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
       swiperInstance.slideTo(activeSlideIndex)
     }
   }, [activeSlideIndex])
-
-  // useEffect(() => {
-
-  //   console.log('===== useEffect Swiper =====')
-  // }, []);
 
   return (
     <SwiperContainer id={id}>
@@ -137,15 +135,10 @@ const Swiper: React.FC<iSwiperProps> = (props) => {
         // @ts-expect-error
         onTransitionStart={onTransitionStart}
       >
-        {categories.map((category) => (
-          <div key={`category-${category.id}`} className="category-slide">
-            <h2>{category.title}</h2>
-            {category.events.map((event) => (
-              <SwiperSlide key={`event-${category.id}-${event.id}`}>
-                <EventList year={event.year} text={event.text} />
-              </SwiperSlide>
-            ))}
-          </div>
+        {initialItem.events.map((event) => (
+          <SwiperSlide key={`event-${event.id}`}>
+            <EventList year={event.year} text={event.text} />
+          </SwiperSlide>
         ))}
       </SwiperJS>
     </SwiperContainer>
