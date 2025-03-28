@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { EventList } from '../EventList/EventList'
 import { iSwiperProps } from './Swiper.interface'
 
-interface NavButtonProps {
+interface iNavButtonProps {
   disabled?: boolean
 }
 
@@ -163,9 +163,10 @@ export { Swiper }
 const SwiperContainer = styled.div`
   position: relative;
   max-width: 1200px;
+  min-height: 150px;
 `
 
-const NavButton = styled.button<NavButtonProps>`
+const NavButton = styled.button<iNavButtonProps>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -176,21 +177,15 @@ const NavButton = styled.button<NavButtonProps>`
   border: none;
   box-shadow: var(--elevation-8);
   cursor: pointer;
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   transition: all 0.3s ease;
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
+  display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
 
   &:hover:not(:disabled) {
     opacity: 0.8;
     transform: translateY(-50%) scale(1.1);
-  }
-
-  svg path {
-    stroke: ${({ disabled }) => (disabled ? '#999' : '#3877EE')};
   }
 `
 

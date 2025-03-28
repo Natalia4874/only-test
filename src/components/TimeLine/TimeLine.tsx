@@ -5,6 +5,10 @@ import styled from 'styled-components'
 import { Swiper } from '../Swiper/Swiper'
 import { iTimelineProps } from './TimeLine.interface'
 
+interface iNavButtonProps {
+  disabled?: boolean
+}
+
 const Timeline: React.FC<iTimelineProps> = ({ items }) => {
   const startAngle = items.length * 2
   const [activeIndex, setActiveIndex] = useState(0)
@@ -13,6 +17,9 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
 
   const radius = 268
   const itemSize = 56
+
+  const prevBtnDisabled = activeIndex === 0
+  const nextBtnDisabled = activeIndex === items.length - 1
 
   const calculatePosition = (index: number, total: number) => {
     const angle = index * (360 / total) + rotation - 90 + 360 / total
@@ -31,11 +38,17 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
   }
 
   const handlePrev = () => {
+    if (prevBtnDisabled) {
+      return
+    }
     const newIndex = (activeIndex - 1 + items.length) % items.length
     rotateToItem(newIndex)
   }
 
   const handleNext = () => {
+    if (nextBtnDisabled) {
+      return
+    }
     const newIndex = (activeIndex + 1) % items.length
     rotateToItem(newIndex)
   }
@@ -97,7 +110,7 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
               0{activeIndex + 1}/0{items.length}
             </NavigationText>
             <NavigationButtons>
-              <NavButtonPrev onClick={handlePrev}>
+              <NavButton disabled={prevBtnDisabled} onClick={handlePrev}>
                 <svg
                   width="10"
                   height="14"
@@ -111,8 +124,8 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
                     strokeWidth="2"
                   />
                 </svg>
-              </NavButtonPrev>
-              <NavButtonNext onClick={handleNext}>
+              </NavButton>
+              <NavButton disabled={nextBtnDisabled} onClick={handleNext}>
                 <svg
                   width="10"
                   height="14"
@@ -126,7 +139,7 @@ const Timeline: React.FC<iTimelineProps> = ({ items }) => {
                     strokeWidth="2"
                   />
                 </svg>
-              </NavButtonNext>
+              </NavButton>
             </NavigationButtons>
           </NavigationBlock>
           <NavigationSlider>
@@ -153,7 +166,7 @@ const Container = styled.div`
 `
 const NavigationSlider = styled.div`
   margin: 0 auto;
-  padding: 56px 0 80px;
+  padding: 56px 0 20px;
 `
 const TimelineHeader = styled.div`
   position: absolute;
@@ -204,7 +217,7 @@ const NavigationButtons = styled.div`
   flex-direction: row;
   gap: 20px;
 `
-const NavButtonPrev = styled.div`
+const NavButton = styled.button<iNavButtonProps>`
   width: 50px;
   height: 50px;
   background: var(--color-surface-primary);
@@ -216,19 +229,8 @@ const NavButtonPrev = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-`
-const NavButtonNext = styled.div`
-  width: 50px;
-  height: 50px;
-  background: var(--color-surface-primary);
-  border-radius: 100%;
-  border: none;
-  border: 1px solid var(--color-border-secondary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'all')};
 `
 const TimelineContainer = styled.div`
   position: relative;

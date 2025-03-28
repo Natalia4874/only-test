@@ -13,11 +13,6 @@ export interface iEventCategory {
 }
 
 export interface iEventListProps {
-  data?: iEventCategory[] | iEventItem[]
-  type?: 'category' | 'event'
   year?: number
   text?: string
-  yearStart?: number | undefined
-  yearEnd?: number | undefined
-  title?: string
 }
