@@ -22,7 +22,7 @@ const App: React.FC = () => {
     <Container>
       <Menu />
       <Main>
-        <TimelineWithData data={categories} />
+        <TimelineWithData data={categories} title="Исторические даты" />
       </Main>
     </Container>
   )

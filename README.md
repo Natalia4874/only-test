@@ -21,3 +21,11 @@ cd only-test
 # Install dependencies
 npm install
 ```
+
+### Start the project
+
+npm run start
+
+### Open in browser
+
+http://localhost:3000

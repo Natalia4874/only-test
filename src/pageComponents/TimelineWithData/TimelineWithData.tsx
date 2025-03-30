@@ -6,13 +6,13 @@ import { Timeline } from '../../components/TimeLine/TimeLine'
 import { iTimelineWithDataProps } from './iTimelineWithData.interface'
 
 const TimelineWithData: React.FC<iTimelineWithDataProps> = (props) => {
-  const { data } = props
+  const { data, title } = props
 
   return (
     <React.Fragment>
       <Header>
         <GradientLine />
-        <Heading>Исторические даты</Heading>
+        <Heading>{title}</Heading>
       </Header>
       <Timeline items={data} />
     </React.Fragment>
